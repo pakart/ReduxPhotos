@@ -1,0 +1,52 @@
+{
+    "extends": 
+    [
+        "airbnb/base",
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "env": {"browser": true},
+
+    "rules": {
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "react/prop-types": 0,
+        "max-classes-per-file": ["error", 5]
+    },
+     
+    "plugins": [
+        "react"
+    ],
+
+    "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "settings": {
+        "react": {
+          "createClass": "createReactClass",
+          "pragma": "React",
+          "version": "detect",
+          "flowVersion": "0.53"
+        },
+        "propWrapperFunctions": [
+          "forbidExtraProps",
+          {
+            "property": "freeze",
+            "object": "Object"
+          },
+          {
+            "property": "myFavoriteWrapper"
+          }
+        ],
+        "linkComponents": [
+          "Hyperlink",
+          {
+            "name": "Link",
+            "linkAttribute": "to"
+          }
+        ]
+      }
+    
+}
