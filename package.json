@@ -3,7 +3,7 @@
     "author": "pakart",
     "scripts": {
         "lint": "eslint ./app/*.jsx",
-        "lint:fix": "eslint ./app/*jsx --fix",
+        "lint:fix": "eslint ./app/network/*jsx --fix",
         "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
         "dev": "webpack-dev-server --hot --open",
         "build": "webpack"

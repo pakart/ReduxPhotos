@@ -4,8 +4,8 @@ const reducer = (state = Map(), action) => {
   switch (action.type) {
     case 'SET_STATE':
       return state.merge(action.state);
-    case 'ADD_PHOTOS':
-      return state.update('photos', (photos) => photos.push(action.photo));
+    case 'ADD_PHOTO':
+      return state.update('photos', (photos) => photos.set(action.id, action.url));
       /* case 'OPEN_PHOTO':
       return state.update('photo', (photo) => photo.push(action.photo)); */
     /* case 'ADD_COMMENT':

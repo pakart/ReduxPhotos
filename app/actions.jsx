@@ -1,6 +1,7 @@
-const addPhoto = (photo) => ({
+const addPhoto = (id, url) => ({
   type: 'ADD_PHOTO',
-  photo,
+  url,
+  id,
 });
 
 const openPhoto = (photo) => ({
