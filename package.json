@@ -3,7 +3,7 @@
     "author": "pakart",
     "scripts": {
         "lint": "eslint ./app/*.jsx",
-        "lint:fix": "eslint ./app/network/*jsx --fix",
+        "lint:fix": "eslint ./app/*jsx --fix",
         "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
         "dev": "webpack-dev-server --hot --open",
         "build": "webpack"
@@ -13,6 +13,7 @@
         "prop-types": "^15.7.2",
         "react": "^16.5.0",
         "react-dom": "^16.5.0",
+        "react-modal": "^3.11.2",
         "react-redux": "^5.0.7",
         "redux": "^4.0.0"
     },

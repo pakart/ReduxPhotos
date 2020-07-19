@@ -4,14 +4,27 @@ const addPhoto = (id, url) => ({
   id,
 });
 
-const openPhoto = (photo) => ({
-  type: 'OPEN_PHOTO',
-  photo,
+const releaseCurrent = () => ({
+  type: 'RELEASE_CURRENT',
 });
 
-const addComment = (comment) => ({
+const addComment = (commentId, commentEntries) => ({
   type: 'ADD_COMMENT',
-  comment,
+  commentId,
+  commentEntries,
 });
 
-module.exports = { addPhoto, openPhoto, addComment };
+const switchModal = (mode) => ({
+  type: 'SWITCH_MODAL',
+  mode,
+});
+
+const openPhoto = (id, url) => ({
+  type: 'OPEN_PHOTO',
+  url,
+  id,
+});
+
+module.exports = {
+  addPhoto, openPhoto, addComment, switchModal, releaseCurrent,
+};

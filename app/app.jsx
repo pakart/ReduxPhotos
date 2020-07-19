@@ -12,6 +12,9 @@ store.dispatch({
   type: 'SET_STATE',
   state: {
     photos: new Map(),
+    modalIsOpen: false,
+    currentPhoto: new Map(),
+    currentComments: new Map(),
   },
 });
 
