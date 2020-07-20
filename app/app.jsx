@@ -19,8 +19,8 @@ store.dispatch({
 });
 
 ReactDOM.render(
-    <Provider store={store}>
+  <Provider store={store}>
       <AppView />
     </Provider>,
-    document.getElementById('container'),
+  document.getElementById('container'),
 );

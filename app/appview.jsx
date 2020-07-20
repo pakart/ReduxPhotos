@@ -1,4 +1,6 @@
 /* eslint-disable class-methods-use-this */
+// import './css/appview.css';
+
 const React = require('react');
 const { List } = require('immutable');
 // const ReactDOM = require('react-dom');
@@ -37,7 +39,7 @@ class PhotoItem extends React.Component {
 
 class PhotosList extends React.Component {
   render() {
-    return <div className='photos-list'>
+    return <div className='photo-list'>
       {this.props.photos.keySeq().map((item) => <PhotoItem key={item} imgId={item}
         srcUrl={this.props.photos.get(item)} {...this.props}/>)}
     </div>;
@@ -72,14 +74,15 @@ class AppView extends React.Component {
     }
 
     loadPhotos(this.props);
-
-    return <main>
+    return <div className = 'app-view'>
+      <header> <h1 className='centered-header'>TestApp</h1> </header>
             <PhotosList {...this.props} photoHandler={this.handleOpenModal} />
               <ReactModal isOpen={this.props.modalIsOpen} {...this.props}>
-        <ModalPhoto {...this.props}/>
+                <ModalPhoto {...this.props}/>
                 <button onClick={this.handleCloseModal}>Close Modal</button>
-              </ReactModal>
-    </main>;
+      </ReactModal>
+      <footer className='footer'>footer</footer>
+    </div>;
   }
 }
 
