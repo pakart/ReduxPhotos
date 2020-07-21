@@ -8,8 +8,8 @@ class CommentField extends React.Component {
     let date = new Date(this.props.comments.get(this.props.id).last());
     date = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
     return <div className='comment'>
-      <p>{date}</p>
-      <p>{this.props.comments.get(this.props.id).first()}</p>
+      <p id='comment-date'>{date}</p>
+      <p id='comment-text'>{this.props.comments.get(this.props.id).first()}</p>
     </div>;
   }
 }
@@ -43,8 +43,8 @@ class CommentInput extends React.Component {
 
   render() {
     return <div className='input-form'>
-      <input ref={(nameInput) => { this.nameInput = nameInput; }} placeholder = 'Введите Ваше имя'/>
-      <input ref={(commentInput) => { this.commentInput = commentInput; }} placeholder='Введите  Ваш комментарий' />
+      <input className='input-field' ref={(nameInput) => { this.nameInput = nameInput; }} placeholder = 'Ваше имя'/>
+      <input className='input-field' ref={(commentInput) => { this.commentInput = commentInput; }} placeholder='Ваш комментарий' />
       <button id='send-comment-button' onClick={this.addComment}>Оставить комментарий</button>
 </div>;
   }
@@ -55,15 +55,16 @@ class ModalPhoto extends React.Component {
     //  console.log('wtf2', this.props.currentPhoto.get('id'));
     return <div className='modal-view'>
       <div className='modal-pic-n-input'>
-        <div id='photo-placeholder'>
-          <img src={this.props.currentPhoto.get('url')}></img>
-        </div>
+        <picture id='photo-placeholder'>
+          <img className='photo' src={this.props.currentPhoto.get('url')}></img>
+        </picture>
         <CommentInput {...this.props} />
       </div>
       <div className='comments-view'>
         {this.props.currentComments.keySeq().map((item) => <CommentField
           key={item} id={item} comments={this.props.currentComments} />)}
       </div>
+      <a className='close-modal-button' onClick={this.props.closeWindow} />
     </div>;
   }
 }

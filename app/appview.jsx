@@ -30,7 +30,7 @@ class PhotoItem extends React.Component {
   }
 
   render() {
-    return <div onClick={this.loadPhoto}>
+    return <div className="photo-item" onClick={this.loadPhoto}>
 
     <img src={this.props.srcUrl}></img>
   </div>;
@@ -75,13 +75,12 @@ class AppView extends React.Component {
 
     loadPhotos(this.props);
     return <div className = 'app-view'>
-      <header> <h1 className='centered-header'>TestApp</h1> </header>
+      <header> <h1 className='centered-header'>TEST APP</h1> </header>
             <PhotosList {...this.props} photoHandler={this.handleOpenModal} />
-              <ReactModal isOpen={this.props.modalIsOpen} {...this.props}>
-                <ModalPhoto {...this.props}/>
-                <button onClick={this.handleCloseModal}>Close Modal</button>
+              <ReactModal className='modal-portal' overlayClassName='overlay-modal' isOpen={this.props.modalIsOpen} {...this.props}>
+                <ModalPhoto {...this.props} closeWindow={this.handleCloseModal}/>
       </ReactModal>
-      <footer className='footer'>footer</footer>
+      <footer className='footer'>©2018-2019</footer>
     </div>;
   }
 }
