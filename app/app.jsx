@@ -8,6 +8,8 @@ const AppView = require('./appview.jsx');
 
 const store = redux.createStore(reducer);
 
+// Значения для начального состояния store
+
 store.dispatch({
   type: 'SET_STATE',
   state: {

@@ -3,19 +3,28 @@
 
 const React = require('react');
 const { List } = require('immutable');
-// const ReactDOM = require('react-dom');
 const { connect } = require('react-redux');
 const ReactModal = require('react-modal');
 const actions = require('./actions.jsx');
 const getPhotoObject = require('./network/photos_promises.jsx');
 const ModalPhoto = require('./modal_photo.jsx');
-// const ModalPhoto = require('./modal_photo.jsx');
+
+//
+// Компонент фото в списке
+//
 
 class PhotoItem extends React.Component {
   constructor() {
     super();
     this.loadPhoto = this.loadPhoto.bind(this);
   }
+
+  //
+  // Функция открытия фото по клику по элементу списка:
+  // *подгрузка изображения с сервера по id
+  // *подгрузка в store комментариев к изображению
+  // *открытие модального окна
+  //
 
   loadPhoto() {
     const url = `https://boiling-refuge-66454.herokuapp.com/images/${this.props.imgId}`;
@@ -32,10 +41,14 @@ class PhotoItem extends React.Component {
   render() {
     return <div className="photo-item" onClick={this.loadPhoto}>
 
-    <img src={this.props.srcUrl}></img>
+    <img className='photo-src' src={this.props.srcUrl}></img>
   </div>;
   }
 }
+
+//
+// Компонент списка фото
+//
 
 class PhotosList extends React.Component {
   render() {
@@ -45,9 +58,11 @@ class PhotosList extends React.Component {
     </div>;
   }
 }
+
 //
-// modal window++
+// Компонент приложения помещённый в контейнер
 //
+
 class AppView extends React.Component {
   constructor() {
     super();
@@ -55,9 +70,13 @@ class AppView extends React.Component {
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
+  // Функция открытия модального окна
+
   handleOpenModal() {
     this.props.switchModal(true);
   }
+
+  // Функция закрытия модального окна
 
   handleCloseModal() {
     this.props.switchModal(false);
@@ -65,6 +84,8 @@ class AppView extends React.Component {
   }
 
   render() {
+    // Функция загрузки списка фотографий и добавления их в store
+
     function loadPhotos(props) {
       getPhotoObject('https://boiling-refuge-66454.herokuapp.com/images').then((response) => JSON.parse(response)).then((data) => {
         data.forEach((element) => {
@@ -72,8 +93,8 @@ class AppView extends React.Component {
         });
       });
     }
-
     loadPhotos(this.props);
+
     return <div className = 'app-view'>
       <header> <h1 className='centered-header'>TEST APP</h1> </header>
             <PhotosList {...this.props} photoHandler={this.handleOpenModal} />

@@ -3,6 +3,10 @@ const React = require('react');
 const { List } = require('immutable');
 const postCommentObject = require('./network/post.jsx');
 
+//
+// Компонент-комментарий: дата/текст
+//
+
 class CommentField extends React.Component {
   render() {
     let date = new Date(this.props.comments.get(this.props.id).last());
@@ -14,13 +18,23 @@ class CommentField extends React.Component {
   }
 }
 
+//
+// Компонент-форма для отправки комментария: input для имени, input для текста комментария,
+// button отправка комментария
+//
+
 class CommentInput extends React.Component {
   constructor() {
     super();
     this.addComment = this.addComment.bind(this);
   }
 
+  //
+  // Функция сборки JSON и его отправка на сервер
+  //
+
   addComment() {
+    // Провекра на наличии в инпуте значения, при успехе сборка
     if (this.commentInput.value !== '') {
       const newRecordObject = {
         name: this.nameInput.value,
@@ -32,12 +46,16 @@ class CommentInput extends React.Component {
 
       const url = `https://boiling-refuge-66454.herokuapp.com/images/${id}/comments`;
 
+      //
+      // Отправка запроса с постом комментария, при успехе добавление в store напрямую
+      // (на сервере комментарий не добавляется)
+      //
+
       postCommentObject(url, newRecordJsonObject).then(() => {
-      // здесь должен быть запрос на комментарии, но на сервере они не добавляются, поэтому заглушка
         this.props.addComment(newRecordObject.comment, List([newRecordObject.comment, new Date()]));
       });
     }
-    this.nameInput.value = '';
+
     this.commentInput.value = '';
   }
 
@@ -50,9 +68,12 @@ class CommentInput extends React.Component {
   }
 }
 
+//
+// Компонент-модальное окно для просмотра и отправки комментариев
+//
+
 class ModalPhoto extends React.Component {
   render() {
-    //  console.log('wtf2', this.props.currentPhoto.get('id'));
     return <div className='modal-view'>
       <div className='modal-pic-n-input'>
         <picture id='photo-placeholder'>
